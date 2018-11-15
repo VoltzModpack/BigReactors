@@ -27,7 +27,7 @@ archivesBaseName = "BigReactors"
 
 minecraft {
     version = "1.7.10-10.13.2.1291"
-    runDir = "run"	
+    runDir = "run"
 
     replaceIn "BRConfig.java"
     replace "@VERSION@", project.version
@@ -44,16 +44,19 @@ repositories {
     }
     ivy {
         name "CoFHCore"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2230/211/[module]-[revision].[ext]"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2388/750/[module]-[revision].[ext]"
     }
 }
 
 dependencies {
     //compile 'codechicken:CodeChickenCore:1.7.10-1.0.4.29:dev'
     //compile 'codechicken:NotEnoughItems:1.7.10-1.0.3.67:dev'
-    compile 'com.mod-buildcraft:buildcraft:6.0.18:dev'
-    compile 'li.cil.oc:OpenComputers:MC1.7.10-1.4.0.+:api'
-    compile name: 'CoFHCore', version: '[1.7.10]3.0.0RC7-211-dev', ext: 'jar'
+//    compile 'com.mod-buildcraft:buildcraft:6.0.18:dev'
+//    compile 'li.cil.oc:OpenComputers:MC1.7.10-1.4.0.+:api'
+//    compile name: 'CoFHCore', version: '[1.7.10]3.1.4-329', ext: 'jar'
+    compile files("lib/BuildCraft-7.1.23-API.jar")
+    compile files("lib/CoFHCore-[1.7.10]3.1.4-329.jar")
+    compile files("lib/OpenComputers-MC1.7.10-1.7.2+2b0215bdb-universal.jar")
 }
 
 processResources
@@ -65,11 +68,11 @@ processResources
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
+
         // replace version and mcversion
         expand 'version':project.version, 'mcversion':project.minecraft.version
     }
-        
+
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
