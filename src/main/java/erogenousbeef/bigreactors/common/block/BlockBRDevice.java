@@ -1,10 +1,18 @@
 package erogenousbeef.bigreactors.common.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang3.exception.ExceptionUtils;
-
+import cofh.api.tileentity.IReconfigurableFacing;
+import cofh.core.block.BlockCoFHBase;
+import cofh.core.util.CoreUtils;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import erogenousbeef.bigreactors.common.BRLoader;
+import erogenousbeef.bigreactors.common.BRLog;
+import erogenousbeef.bigreactors.common.BigReactors;
+import erogenousbeef.bigreactors.common.interfaces.IBeefReconfigurableSides;
+import erogenousbeef.bigreactors.common.interfaces.IWrenchable;
+import erogenousbeef.bigreactors.common.tileentity.TileEntityCyaniteReprocessor;
+import erogenousbeef.bigreactors.common.tileentity.base.TileEntityBeefBase;
+import erogenousbeef.bigreactors.utils.StaticUtils;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,19 +29,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import cofh.api.tileentity.IReconfigurableFacing;
-import cofh.core.block.BlockCoFHBase;
-import cofh.core.util.CoreUtils;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import erogenousbeef.bigreactors.common.BRLoader;
-import erogenousbeef.bigreactors.common.BRLog;
-import erogenousbeef.bigreactors.common.BigReactors;
-import erogenousbeef.bigreactors.common.interfaces.IBeefReconfigurableSides;
-import erogenousbeef.bigreactors.common.interfaces.IWrenchable;
-import erogenousbeef.bigreactors.common.tileentity.TileEntityCyaniteReprocessor;
-import erogenousbeef.bigreactors.common.tileentity.base.TileEntityBeefBase;
-import erogenousbeef.bigreactors.utils.StaticUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockBRDevice extends BlockCoFHBase {
 
@@ -131,7 +129,9 @@ public class BlockBRDevice extends BlockCoFHBase {
 		case META_CYANITE_REPROCESSOR:
 			return new TileEntityCyaniteReprocessor();
 		default:
-			throw new IllegalArgumentException("Unknown metadata for tile entity");
+			System.err.println("Unknown metadata for BigReactors tile entity!");
+			return null;
+			//throw new IllegalArgumentException("Unknown metadata for tile entity");
 		}
 	}
 
